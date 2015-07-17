@@ -1,0 +1,61 @@
+body{
+	background: #696969;
+}
+div.header{
+	height: 80px;
+	width: 300px;
+	color: #000000;
+}
+
+div.boxdrawing-header{
+	position: absolute; 
+    left: 240px; 
+    top: 50px; 
+    height: 30px;
+    width: 300px; 
+    color: #000000;
+}
+div.boxdrawing{
+	position: absolute; 
+    left: 60px; 
+    top: 110px; 
+    width: 600px;
+    height: 520px; 
+    border: 1px solid #000;
+    background: #FFFAFA;
+}
+div.commandlist-header{
+	position: absolute; 
+    left: 700px; 
+    top: 50px; 
+    height: 30px;
+    width: 250px; 
+    color: #000000;
+}
+div.commandlist{
+	position: absolute; 
+    left: 670px; 
+    top: 110px; 
+    width: 250px;
+    height: 400px; 
+    border: 1px solid #000;
+    background: #FFFAFA;
+}
+
+div.programm-header{
+	position: absolute; 
+    left: 1000px; 
+    top: 50px; 
+    height: 30px;
+    width: 250px; 
+    color: #000000;
+}
+div.programm{
+	position: absolute; 
+    left: 930px; 
+    top: 110px; 
+    width: 300px;
+    height: 520px; 
+    border: 1px solid #000;
+    background: #FFFAFA;
+}
