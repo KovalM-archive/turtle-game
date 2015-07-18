@@ -22,7 +22,7 @@ div.boxdrawing{
     width: 600px;
     height: 520px; 
     border: 1px solid #000;
-    background: #FFFAFA;
+    /*background: #FFFAFA;*/
 }
 div.commandlist-header{
 	position: absolute; 
@@ -58,4 +58,10 @@ div.programm{
     height: 520px; 
     border: 1px solid #000;
     background: #FFFAFA;
+}
+
+div.buttoms{
+	position: absolute; 
+    left: 670px; 
+    top: 520px; 	
 }
