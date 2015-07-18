@@ -1,8 +1,8 @@
 var speedTurtle;
 var svansDown;
-$(document).ready(function(currentSpeed) {
+$(document).ready(function() {
     	eval($.turtle());
-    	speedTurtle=currentSpeed;
+    	speedTurtle=1;
     	goHome();
     	pd();
     	svansDown=true;
@@ -33,3 +33,4 @@ changeSpeed = function(newSpeed){
 	result = document.getElementById("currentspeed");
 	result.value = speedTurtle;
 }
+

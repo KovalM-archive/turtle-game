@@ -57,11 +57,19 @@ div.programm{
     width: 300px;
     height: 520px; 
     border: 1px solid #000;
-    background: #FFFAFA;
 }
 
 div.buttoms{
 	position: absolute; 
     left: 670px; 
     top: 520px; 	
+}
+
+div.command{
+	width: 250px;
+    height: 57px;
+    border: 1px solid  #000000;
+    background: #A9A9A9;
+    color: #000000;
+    text-align: center;
 }

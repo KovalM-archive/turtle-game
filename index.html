@@ -7,6 +7,7 @@
     <link href="css/style.css" rel="stylesheet">
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/davidbau-jquery-turtle-6834559/jquery-turtle.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
     <script src="js/turtle.js"></script>
   </head>
   <body>
@@ -23,20 +24,50 @@
   <div class="commandlist-header">
     <h2>Command list</h2>
   </div>
-  <div class="commandlist"></div>
+  <div class="commandlist">
+    <div id="fd-command" class="command">
+      Forward:<br>
+      <input type="text">
+    </div>
+    <div id="rt-command" class="command">
+      To the right:<br>
+      <input type="text">
+    </div>
+    <div id="lt-command" class="command">
+      To the left:<br>
+      <input type="text">
+    </div>
+    <div id="pu-command" class="command">
+      <p>Tail up</p>
+    </div>
+    <div id="pd-command" class="command">
+      <p>Tail down</p>
+    </div>
+    <div id="repeat-command" class="command">
+      Repeat:<br>
+      <input type="text">
+    </div>
+    <div id="end-circle-command" class="command">
+      <p>End</p>
+    </div>
+  </div>
   
   <div class="programm-header">
     <h2>Programm</h2>
   </div>
   <div class="programm" ></div>
   <div class="buttoms">
-    <button onclick="runProgramm(rangespeed.value)" style="width:80px; height:40px;">Start</button>
+    <button onclick="runProgramm()" style="width:80px; height:40px;">Start</button>
     <button onckick="doPause()" style="width:80px; height:40px;">Pause</button>
     <button onclick="goHome()" style="width:80px; height:40px;">Stop</button>
     <p>Speed:</p> 
     <input id="rangespeed" type="range" min="1" max="10" step="1" value="1" onchange="changeSpeed(value)">
     <output id="currentspeed">1</output>   
   </div>
-
+<script type="text/javascript">
+  $(function(){
+    $(".command").draggable();
+});
+</script>
   </body>
 </html>
