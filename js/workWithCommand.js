@@ -1,6 +1,18 @@
+var commandInProgrammBlock;
 $(document).ready(function() {
       $( "#programm").sortable({
         connectWith: "#commandList",
+        over: function(){
+          commandInProgrammBlock=true;
+        },
+        out: function(){
+          commandInProgrammBlock=false;
+        },
+        beforeStop: function(event,ui){
+          if (!commandInProgrammBlock){
+            $("#"+ui.item.attr('id')).remove();
+          }
+        }
       });
       dragCommand("fd-command");
       dragCommand("rt-command");
