@@ -54,9 +54,10 @@ div.programm{
 	position: absolute; 
     left: 930px; 
     top: 110px; 
-    width: 300px;
+    width: 270px;
     height: 520px; 
     border: 1px solid #000;
+    overflow: auto;
 }
 
 div.buttoms{
