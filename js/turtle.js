@@ -10,7 +10,12 @@ $(document).ready(function() {
     });
 
 runProgramm = function(){
-	fd(100);
+	var programm = document.getElementById("programm");
+	var commands = programm.childNodes;
+	var n = commands.length;
+	for (var i=0; i<n; i++){
+		
+	}
 }
 
 goHome = function(){
