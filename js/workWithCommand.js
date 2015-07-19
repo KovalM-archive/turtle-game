@@ -1,4 +1,7 @@
 $(document).ready(function() {
+      $( "#programm").sortable({
+        connectWith: "#commandList",
+      });
       dragCommand("fd-command");
       dragCommand("rt-command");
       dragCommand("lt-command");
@@ -8,21 +11,18 @@ $(document).ready(function() {
       dragCommand("end-circle-command");
     });
 
-var currentCommand = "fd-command";
+var currentID = 0;
+
 dragCommand = function(id){
 	$("#"+id).draggable({
-      helper:'clone',
-      start: function(){
-        currentCommand = id;
-      }
-    });
-    $("#programm").droppable({
-      drop: function(){
-        var command = document.getElementById(currentCommand);
-        var programm = document.getElementById("programm");
+      helper: function(){
+        var command = document.getElementById(id);
         var commandClone = command.cloneNode(true);
-        commandClone.class=command.class;
-        programm.appendChild(commandClone);  
-      }
-  })
+        commandClone.setAttribute('data-type-command',command.getAttribute('data-type-command'));
+        commandClone.setAttribute('id', currentID);
+        currentID++;
+        return commandClone;
+      },
+      connectToSortable: "#programm",
+    });
 }

@@ -1,69 +1,80 @@
 body{
 	background: #696969;
 }
+
+div.maintable{
+	display: table;
+}
+div.table-col1{
+	display: table-cell;
+	padding-right: 20px;
+	padding-left: 70px;
+}
+div.table-col2{
+	display: table-cell;
+	padding-right: 20px;
+}
+div.table-col3{
+	display: table-cell;
+}
 div.header{
-	height: 80px;
+	height: 50px;
 	width: 300px;
 	color: #000000;
+	z-index: 1;
 }
 
 div.boxdrawing-header{
-	position: absolute; 
-    left: 240px; 
-    top: 50px; 
+	position: relative; 
     height: 30px;
     width: 300px; 
     color: #000000;
+    z-index: 1;
+    margin-bottom: 10px;	
 }
 div.boxdrawing{
-	position: absolute; 
-    left: 60px; 
-    top: 110px; 
+	position: relative;  
     width: 600px;
     height: 520px; 
     border: 1px solid #000;
-    /*background: #FFFAFA;*/
+    z-index: 1;
 }
 div.commandlist-header{
-	position: absolute; 
-    left: 700px; 
-    top: 50px; 
+	position: relative; 
     height: 30px;
     width: 250px; 
     color: #000000;
+    z-index: 1;
+    margin-bottom: 10px;
 }
 div.commandlist{
-	position: absolute; 
-    left: 670px; 
-    top: 110px; 
+	position: relative;
     width: 250px;
     height: 400px; 
     border: 1px solid #000;
-    background: #FFFAFA;
+    z-index: 1;
 }
 
 div.programm-header{
-	position: absolute; 
-    left: 1000px; 
-    top: 50px; 
+	position: relative;
     height: 30px;
     width: 250px; 
     color: #000000;
+    z-index: 1;
+    margin-bottom: 10px;
 }
 div.programm{
-	position: absolute; 
-    left: 930px; 
-    top: 110px; 
     width: 270px;
     height: 520px; 
     border: 1px solid #000;
+    z-index: 1;
     overflow: auto;
 }
 
 div.buttoms{
-	position: absolute; 
-    left: 670px; 
-    top: 520px; 	
+	position: relative;
+    z-index: 1;
+    padding-top: 10px; 	
 }
 
 div.command{
@@ -73,4 +84,5 @@ div.command{
     background: #A9A9A9;
     color: #000000;
     text-align: center;
+    z-index: 2;
 }
