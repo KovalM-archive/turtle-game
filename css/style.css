@@ -83,6 +83,7 @@ div.command{
     border: 1px solid  #000000;
     background: #A9A9A9;
     color: #000000;
-    text-align: center;
+    
     z-index: 2;
+    margin-top: 5;
 }
