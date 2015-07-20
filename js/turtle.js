@@ -2,20 +2,11 @@ var speedTurtle;
 var svansDown;
 $(document).ready(function() {
     	eval($.turtle());
-    	speedTurtle=1;
-    	goHome();
+    	speedTurtle = 1;
     	pd();
     	svansDown=true;
-    	pen('red');
+    	goHome();
     });
-
-var commands,numberCommands;
-runProgramm = function(){
-	var programm = document.getElementById("programm");
-	commands = programm.childNodes;
-	numberCommands = commands.length;
-	doProgram(0,1);
-}
 
 goHome = function(){
 	cg();
@@ -23,22 +14,86 @@ goHome = function(){
 	speed(Infinity);
 	pu();
     moveto(-280,-20	);
-    if (svansDown) pd();
+    if (svansDown) {
+    	pd();
+    	pen('red');
+    }
    	speed(speedTurtle);
 }
 
-doPause = function(){
-	sleep(1000)
-}
-
 changeSpeed = function(newSpeed){
-	speedTurtle = newSpeed;
+	speedTurtle = newSpeed/10;
 	speed(speedTurtle);
 	result = document.getElementById("currentspeed");
-	result.value = speedTurtle;
+	result.value = newSpeed;
 }
 
-doProgram = function(start,n){
+var commands,numberCommands;
+var commandArray = [];
+var isPause = false, isRunning = false;
+var currentItteration = 0;
+var currentCommand = currentItteration;
+
+runProgramm = function(){
+	if (isRunning) return;
+	isRunning = true;
+	if (isPause && commandArray.length>0){
+		unpause();
+	} else{
+		var programm = document.getElementById("programm");
+		commands = programm.childNodes;
+		numberCommands = commands.length;
+		createCommandArray(0,1);
+		currentCommand = currentItteration = 0;
+		doProgram();
+	}	
+}
+
+doStop = function(){
+	currentItteration = 0;
+	currentCommand = 0;
+	commandArray = [];
+	isPause = false;
+	isRunning = true;
+	goHome();
+	var programm = document.getElementById("programm");
+	commands = programm.childNodes;
+	while (commands.length>0){
+		programm.removeChild(commands[0]);
+	}
+}
+
+doPause = function(){
+	isPause = true;
+	isRunning = false;
+}
+
+unpause = function(){
+	isPause = false;
+	isRunning = true;
+	currentCommand = currentItteration;
+	doProgram();
+}
+
+doProgram = function(){
+	setTimeout(function() {
+		console.log(currentCommand,' ',currentItteration);
+		doCommand(commandArray[currentCommand]);
+		currentCommand++;
+		if(isPause){
+			currentItteration = currentCommand;
+		}
+		if(currentCommand >= commandArray.length) { 
+			currentItteration = 0;
+			commandArray = [];
+			isRunning = false;
+		}
+		if(currentCommand < commandArray.length && !isPause) 
+			doProgram();
+	}, 1000/speedTurtle); 
+}
+
+createCommandArray = function(start,n){
 	var i=0;
 	while (i<n){
 		var j = start;
@@ -46,30 +101,12 @@ doProgram = function(start,n){
 		while (true){
 			if (j>=numberCommands) break;
 			var commandType = commands[j].getAttribute('data-type-command');
-			switch(commandType){
-			case "fd-command":
-				fd(getValue(commands[j]));
-				break;
-			case "rt-command":
-				rt(getValue(commands[j]));
-				break;
-			case "lt-command":
-				lt(getValue(commands[j]));
-				break;
-			case "pu-command":
-				pu();
-				break;
-			case "pd-command":
-				pd();
-				break;
-			case "repeat-command":
-				j=doProgram(j+1,getValue(commands[j]));
-				break;
-			case "end-circle-command":
+			if (commandType=="repeat-command"){
+				j=createCommandArray(j+1,getValue(commands[j]));
+			} else if (commandType=="end-circle-command"){
 				ans = j;
-				break;
-			default:
-				break;
+			} else{
+				commandArray.push(commands[j]);
 			}
 			if (ans!=0) break;
 			j++;
@@ -77,6 +114,29 @@ doProgram = function(start,n){
 		i++;
 	}
 	return ans;
+}
+
+doCommand = function(commanda){
+	var commandType = commanda.getAttribute('data-type-command');
+	switch(commandType){
+		case "fd-command":
+			fd(getValue(commanda));
+			break;
+		case "rt-command":
+			rt(getValue(commanda));
+			break;
+		case "lt-command":
+			lt(getValue(commanda));
+			break;
+		case "pu-command":
+			pu();
+			break;
+		case "pd-command":
+			pd();
+			break;
+		default:
+			break;
+	}
 }
 
 getValue = function(element){
