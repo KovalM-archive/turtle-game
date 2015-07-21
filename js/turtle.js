@@ -2,7 +2,7 @@ var speedTurtle;
 var svansDown;
 $(document).ready(function() {
     	eval($.turtle());
-    	speedTurtle = 1;
+    	speedTurtle = 25;
     	pd();
     	svansDown=true;
     	goHome();
@@ -33,6 +33,7 @@ var commandArray = [];
 var isPause = false, isRunning = false;
 var currentItteration = 0;
 var currentCommand = currentItteration;
+var ans;
 
 runProgramm = function(){
 	if (isRunning) return;
@@ -45,7 +46,10 @@ runProgramm = function(){
 		numberCommands = commands.length;
 		createCommandArray(0,1);
 		currentCommand = currentItteration = 0;
-		doProgram();
+		if (commandArray.length>0){
+			doProgram();
+		}
+		isRunning = false;
 	}	
 }
 
@@ -54,13 +58,8 @@ doStop = function(){
 	currentCommand = 0;
 	commandArray = [];
 	isPause = false;
-	isRunning = true;
+	isRunning = false;
 	goHome();
-	var programm = document.getElementById("programm");
-	commands = programm.childNodes;
-	while (commands.length>0){
-		programm.removeChild(commands[0]);
-	}
 }
 
 doPause = function(){
@@ -77,7 +76,6 @@ unpause = function(){
 
 doProgram = function(){
 	setTimeout(function() {
-		console.log(currentCommand,' ',currentItteration);
 		doCommand(commandArray[currentCommand]);
 		currentCommand++;
 		if(isPause){
@@ -95,12 +93,17 @@ doProgram = function(){
 
 createCommandArray = function(start,n){
 	var i=0;
+	var ans;
 	while (i<n){
 		var j = start;
 		ans = 0;
 		while (true){
-			if (j>=numberCommands) break;
+			if (j>=numberCommands) {
+				ans = j;
+				break;
+			}
 			var commandType = commands[j].getAttribute('data-type-command');
+			console.log(commandType,' ',j);
 			if (commandType=="repeat-command"){
 				j=createCommandArray(j+1,getValue(commands[j]));
 			} else if (commandType=="end-circle-command"){
@@ -113,6 +116,7 @@ createCommandArray = function(start,n){
 		}
 		i++;
 	}
+	if (ans==null) ans=start;
 	return ans;
 }
 
@@ -141,5 +145,5 @@ doCommand = function(commanda){
 
 getValue = function(element){
 	var elements = element.getElementsByTagName('input');
-	return elements[0].value;
+	return parseInt(elements[0].value,10);
 }

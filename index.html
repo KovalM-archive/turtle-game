@@ -29,15 +29,15 @@
   <div class="commandlist" id="commandList">
     <div id="fd-command" class="command" data-type-command="fd-command">
       Forward:
-      <input type="text" size="5">
+      <input type="text" size="5" value=0>
     </div>
     <div id="rt-command" class="command" data-type-command="rt-command">
       To the right:
-      <input type="text" size="5">
+      <input type="text" size="5" value=0>
     </div>
     <div id="lt-command" class="command" data-type-command="lt-command">
       To the left:
-      <input type="text" size="5">
+      <input type="text" size="5" value=0>
     </div>
     <div id="pu-command" class="command" data-type-command="pu-command">
       <p>Tail up</p>
@@ -47,7 +47,7 @@
     </div>
     <div id="repeat-command" class="command" data-type-command="repeat-command">
       Repeat:
-      <input type="text" size="5">
+      <input type="text" size="5" value=0>
     </div>
     <div id="end-circle-command" class="command" data-type-command="end-circle-command">
       <p>End</p>
@@ -58,13 +58,13 @@
     <button onclick="doPause()" style="width:80px; height:40px;">Pause</button>
     <button onclick="doStop()" style="width:80px; height:40px;">Stop</button>
     <p>Speed:</p> 
-    <input id="rangespeed" type="range" min="1" max="50" step="1" value="25" onchange="changeSpeed(value)">
-    <output id="currentspeed">10</output>   
+    <input id="rangespeed" type="range" min="10" max="500" step="1" value="250" onchange="changeSpeed(value)">
+    <output id="currentspeed">250</output>   
   </div>  
   </div>
   <div class="table-col3">
     <div class="programm-header">
-      <h2>Programm</h2>
+      <h2>Program</h2>
     </div>
     <div class="programm" id="programm"></div>  
   </div>
